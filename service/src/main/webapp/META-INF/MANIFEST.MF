@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Class-Path: emailservice-commons-0.1-SNAPSHOT.jar javax.ws.rs-api-2.0.
+ 1.jar cxf-rt-frontend-jaxrs-3.0.4.jar cxf-core-3.0.4.jar woodstox-cor
+ e-asl-4.4.1.jar stax2-api-3.1.4.jar xmlschema-core-2.2.1.jar javax.an
+ notation-api-1.2.jar cxf-rt-transports-http-3.0.4.jar cxf-rt-rs-clien
+ t-3.0.4.jar jackson-core-asl-1.8.6.jar jackson-mapper-asl-1.8.6.jar j
+ ackson-jaxrs-1.8.6.jar spring-web-3.2.6.RELEASE.jar aopalliance-1.0.j
+ ar spring-aop-3.2.6.RELEASE.jar spring-beans-3.2.6.RELEASE.jar spring
+ -core-3.2.6.RELEASE.jar commons-logging-1.1.1.jar spring-context-3.2.
+ 6.RELEASE.jar spring-expression-3.2.6.RELEASE.jar emailservice-emailp
+ rovider-0.1-SNAPSHOT.jar
+

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<h1>EmailService</h1>
+
+<p>From: <input id="from" type="string" value="a@a.com"></p>
+<p>To: <input id="to" type="string" value="b@b.com"></p>
+<p>Subject: <input id="subject" type="string" value="Subject"></p>
+<p>Body: <input id="body" type="string" value="Body"></p>
+
+<p><button type="button" onclick="sendEmail()">Send</button>
+
+<p>Request:</p>
+<p id="request"></p>
+
+<p>Response:</p>
+<p id="response"></p>
+
+<hr>
+
+<p>Job ID: <input id="jobid" type="string" value=""></p>
+<p><button type="button" onclick="checkStatus()">Check Status</button>
+
+<p>Request:</p>
+<p id="requestStatus"></p>
+
+<p>Response:</p>
+<p id="responseStatus"></p>
+
+<script>
+function sendEmail() {
+    var from = $('#from').val();
+    var to = $('#to').val();
+    var subject = $('#subject').val();
+    var body = $('#body').val();
+
+    var request = {
+             "from": from,
+             "to": to,
+             "subject": subject,
+             "body": body 
+            };
+
+    
+    if(from === "" || to === "" || subject === "" || body === "")
+    {
+        document.getElementById("request").innerHTML = "Invalid input"
+    }
+    else
+    { 
+        document.getElementById("request").innerHTML = JSON.stringify(request);
+
+        $.ajax(
+        {
+            type: "post",
+            url: "/cxf/emailservice/emailjobs",
+            async: false,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify(request),
+            success: function( data, textStatus, jQxhr)
+            {
+                document.getElementById("response").innerHTML = JSON.stringify(data);
+                $('#jobid').val(data["id"]);  
+            },
+            error: function( jqXhr, textStatus, errorThrown )
+            {
+                document.getElementById("response").innerHTML = errorThrown;
+            }
+        }
+        );
+
+    }
+}
+
+
+function checkStatus() {
+    var jobid = $('#jobid').val();
+    
+    if(jobid === "")
+    {
+        document.getElementById("requestStatus").innerHTML = "Invalid input"
+    }
+    else
+    { 
+        document.getElementById("requestStatus").innerHTML = jobid;
+
+        $.ajax(
+        {
+            type: "get",
+            url: "/cxf/emailservice/emailjobs/" + jobid,
+            async: false,
+            dataType: "json",
+            success: function( data, textStatus, jQxhr)
+            {
+                document.getElementById("responseStatus").innerHTML = JSON.stringify(data);  
+            },
+            error: function( jqXhr, textStatus, errorThrown )
+            {
+                document.getElementById("responseStatus").innerHTML = errorThrown;
+            }
+        }
+        );
+
+    }
+}
+
+
+</script>
+
+</body>
+</html> 
