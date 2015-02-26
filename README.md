@@ -58,7 +58,7 @@ There are a couple of future APIs such as
 This API provides a way to update an email job if the job is still in the queue.
 
 * DELETE (TODO)
-This API provide a way to cancel an email job if the job is still in the queue.  
+This API provide a way to cancel an email job if the job is still in the queue.
 
 ### Queues and Hashmap
 
@@ -150,12 +150,11 @@ They have pros and cons and apply for different applications. In email service, 
 
 We need to monitor our service using metrics, which can be uploaded to graphite through statd. We can check CPU, memory usage or other timer, count in email service.
 
-
 ## Implemntation
 
 The current implementation is only for a prototype. I choose existing tools and technologies.
 
-To implemnt service, I use CXF and spring framework in Java, they provide rich functions for REST services and clients. Sprint also provides object injection. This is very usful for extend or functions without changing codes. For example, if we want to change email provider, we can change the bean setting in context files. Object injection can also be used in unit tests to provide mock email providers.
+To implemnt service, I use CXF and spring framework in Java, they provide rich functions for REST services and clients. Sprint also provides object injection. This is very useful for extending functions without changing codes. For example, if we want to change email provider, we can change the bean setting in context files. Object injection can also be used in unit tests to provide mock email providers.
 
 To implment frontend, I just use javascript and jquery lib to call REST APIs. the web site is very simple, since I focus on the backend service in this project. 
 
@@ -165,7 +164,6 @@ I also use Tomcat as servlet container and use EC2 to host my service.
 
 Due to the limit time, I only provide an intergration test for POST and GET APIs. If I have more time,  I will add more unit test using mock objects and add some intergration tests for email providers.
 
-
 ## Deployment
 
 I have deployed the service on 
@@ -173,6 +171,10 @@ I have deployed the service on
 http://ec2-52-11-25-114.us-west-2.compute.amazonaws.com:8080/
 
 It provides functions to send emails and check job stutus in a brower.
+
+## Future Work
+
+One thing is to support attachments in emails. We can store files in large distributed file systems and provide links in email to retrive them.
 
 ## Feedback
 
