@@ -36,8 +36,8 @@ public class EmailProviderSendGrid implements EmailProvider{
 		request.add("to", jobRequest.getTo());
 		request.add("subject", jobRequest.getSubject());
 		request.add("text", jobRequest.getBody());
-		request.add("api_user", "whyingchen");
-		request.add("api_key", "sendgrid");
+		request.add("api_user", "***");
+		request.add("api_key", "***");
 	
 		Form data = new Form(request);
 		
